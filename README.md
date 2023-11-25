@@ -1,1 +1,1 @@
-# Sudoku em Java
+# Sudoku
