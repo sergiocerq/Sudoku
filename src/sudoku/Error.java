@@ -23,7 +23,9 @@ public class Error extends JLabel {
 		return instance;
 	}
 	public void updateErros(int qtd_erros) {
+		super.setText("Erros : "+qtd_erros+" / 3");
 		if(qtd_erros > 2) {
+	    	 MusicPlayer.playSong(Song.FAILEDSOUND);
 			Countdown.getInstance().stopTimer();
 			Object[] options = {"Sair do Jogo",
 					"Novo Jogo"};
@@ -39,11 +41,10 @@ public class Error extends JLabel {
             //NO_OPTION
             if (reply == JOptionPane.NO_OPTION) {
             	SudokuMain.getInstance().initGame(false);
+            	Cell.resetErros();
+            	MusicPlayer.restartSong();
             }
-            qtd_erros = 0;
-            Cell.resetErros();
-		}			
-		super.setText("Erros : "+qtd_erros+" / 3");
+		}					
 	}
 	
 	

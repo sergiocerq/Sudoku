@@ -102,6 +102,7 @@ public class GameBoardPanel extends JPanel {
 		 	 }
 		 	 sourceCell.paint();   
 		 	 if(isSolved()) {
+		    	MusicPlayer.playSong(Song.WINNERSOUND);
 		 		Countdown.getInstance().stopTimer();		 		 
 		 		Object[] options = {"Sair do Jogo",
 				"Novo Jogo"};
@@ -117,6 +118,7 @@ public class GameBoardPanel extends JPanel {
 	            //NO_OPTION
 	            if (reply == JOptionPane.NO_OPTION) {
 	            	SudokuMain.getInstance().initGame(false);
+	            	MusicPlayer.restartSong();
 	            }
 	            Cell.resetErros();
 		 	 }

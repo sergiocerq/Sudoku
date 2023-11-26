@@ -37,32 +37,32 @@ public class SudokuMain extends JFrame {
    private SudokuMain() {
 
       Container cp = getContentPane();
-      getContentPane().setLayout(null);
       setLocationRelativeTo(null);
+      getContentPane().setLayout(null);
 
       btnIniciarJogo = new JButton("Iniciar Jogo");
-      
-      btnIniciarJogo.setBounds(141, 357, 117, 25);
+      btnIniciarJogo.setBounds(158, 357, 117, 25);
       getContentPane().add(btnIniciarJogo);
       
       comboBox = new JComboBox();
-      comboBox.setBounds(141, 302, 117, 24);
+      comboBox.setBounds(158, 302, 117, 24);
       getContentPane().add(comboBox);
       comboBox.addItem("Fácil");
       comboBox.addItem("Médio");
       comboBox.addItem("Difícil");
       
       lblEscolhaONvel = new JLabel("Escolha o nível:");
-      lblEscolhaONvel.setBounds(141, 275, 117, 15);
+      lblEscolhaONvel.setBounds(158, 275, 117, 15);
       getContentPane().add(lblEscolhaONvel);
       
       btnSair = new JButton("Sair");
+      btnSair.setBounds(185, 415, 62, 25);
       btnSair.addActionListener(new ActionListener() {
       	public void actionPerformed(ActionEvent arg0) {
+      		MusicPlayer.playSong(Song.BUTTONSOUND);
       		System.exit(0);
       	}
       });
-      btnSair.setBounds(170, 413, 62, 25);
       getContentPane().add(btnSair);
       board.setBounds(0, 39, 435, 462);
 
@@ -88,15 +88,20 @@ public class SudokuMain extends JFrame {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // to handle window-closing
       setTitle("Sudoku");
       setVisible(true);
-      btnIniciarJogo.addActionListener(new ActionListener() {
+      btnIniciarJogo.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent arg0) {
+				MusicPlayer.playSong(Song.BUTTONSOUND);
         		Countdown.getInstance().startTimer();
-        		board.newGame(Levels.HARD);
+        		board.newGame(Levels.EASY);
         		initGame(true);
         	}		
         });
-      	
-
+      
+      JLabel lblNewLabel = new JLabel(new ImageIcon(getClass().getResource("/images/logo2.png")));
+      lblNewLabel.setBounds(72, 12, 276, 251);
+      getContentPane().add(lblNewLabel);
+      //snakeFrame.add();
+      //snakeFrame.pack();
 		/*
 		 * BufferedImage img; try { img = ImageIO.read(new File("logo2.png")); JLabel
 		 * lblNewLabel_1 = new JLabel(new ImageIcon(img)); lblNewLabel_1.setBounds(170,
@@ -130,6 +135,7 @@ public class SudokuMain extends JFrame {
 			public void run() {
 				try {
 					SudokuMain frame = getInstance();
+					MusicPlayer.playSong(Song.SOUNDSTACK);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

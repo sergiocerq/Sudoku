@@ -35,6 +35,7 @@ public class Cell extends JTextField {
 	}
 	public static void resetErros() {
 		Cell.qtd_erros = 0;
+		Error.getInstance().updateErros(0);
 	}
 
    /** Constructor */
@@ -71,10 +72,12 @@ public class Cell extends JTextField {
          super.setForeground(FG_NOT_GIVEN);
       } else if (status == CellStatus.CORRECT_GUESS) {  // from TO_GUESS
          //super.setBackground(BG_CORRECT_GUESS);
+     	 MusicPlayer.playSong(Song.CORRECTSOUND);
          super.setForeground(FG_TO_GUESS);
          super.setEditable(false);
       } else if (status == CellStatus.WRONG_GUESS) {
     	 // from TO_GUESS
+    	 MusicPlayer.playSong(Song.ERRORSOUND);
     	 Cell.qtd_erros++;
     	 Error.getInstance().updateErros(Cell.qtd_erros);
          super.setForeground(BG_WRONG_GUESS);
