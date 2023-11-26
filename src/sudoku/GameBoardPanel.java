@@ -93,14 +93,13 @@ public class GameBoardPanel extends JPanel {
 		 	 // Retrieve the int entered
 		 	 int numberIn = Integer.parseInt(sourceCell.getText());
 		 	 // For debugging
-		 	 //System.out.println("You entered " + numberIn);
-		 	 if(sourceCell.status == CellStatus.TO_GUESS) {
-			 	 if (numberIn == sourceCell.number) {
-			 	    sourceCell.status = CellStatus.CORRECT_GUESS;
-			 	 } else {
-			 		sourceCell.status = CellStatus.WRONG_GUESS; 
-			 	 }
+		 	 System.out.println(numberIn + " == " + sourceCell.number + " ?");		 	 
+		 	 if (numberIn == sourceCell.number) {
+		 		if(sourceCell.status != CellStatus.GIVEN) sourceCell.status = CellStatus.CORRECT_GUESS;
+		 	 } else {
+		 		sourceCell.status = CellStatus.WRONG_GUESS; 
 		 	 }
+
 		 	 sourceCell.paint();   
 		 	 if(isSolved()) {
 		    	MusicPlayer.playSong(Song.WINNERSOUND);
