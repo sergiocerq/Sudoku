@@ -94,11 +94,12 @@ public class GameBoardPanel extends JPanel {
 		 	 int numberIn = Integer.parseInt(sourceCell.getText());
 		 	 // For debugging
 		 	 //System.out.println("You entered " + numberIn);
-		 	
-		 	 if (numberIn == sourceCell.number) {
-		 	    sourceCell.status = CellStatus.CORRECT_GUESS;
-		 	 } else {
-		 		sourceCell.status = CellStatus.WRONG_GUESS;
+		 	 if(sourceCell.status == CellStatus.TO_GUESS) {
+			 	 if (numberIn == sourceCell.number) {
+			 	    sourceCell.status = CellStatus.CORRECT_GUESS;
+			 	 } else {
+			 		sourceCell.status = CellStatus.WRONG_GUESS; 
+			 	 }
 		 	 }
 		 	 sourceCell.paint();   
 		 	 if(isSolved()) {

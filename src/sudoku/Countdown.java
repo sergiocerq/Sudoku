@@ -38,7 +38,7 @@ public class Countdown extends JLabel {
 	private Timer t = new Timer(1000, new ActionListener() {		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-		  counter++;
+		  counter++; 
           int hours = counter / 3600;
           int minutes = (counter % 3600) / 60;
           int seconds = counter % 60;

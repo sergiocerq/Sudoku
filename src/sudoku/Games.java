@@ -45,7 +45,7 @@ public class Games {
 				{true, true, false, true, true, false, true, true, true}};
 			hardcodedIsGiven = values;
 		}
-		if(level == Levels.HARD) {
+		if(level == Levels.HARD) { 
 			boolean[][] values =
 				{{true, false, false, false, true, true, false, true, true},
 				{true, true, false, true, true, false, true, true, false},

@@ -21,11 +21,11 @@ public class Error extends JLabel {
 		if(instance == null)
 			instance = new Error();
 		return instance;
-	}
+	} 
 	public void updateErros(int qtd_erros) {
 		super.setText("Erros : "+qtd_erros+" / 3");
 		if(qtd_erros > 2) {
-	    	 MusicPlayer.playSong(Song.FAILEDSOUND);
+	    	MusicPlayer.playSong(Song.FAILEDSOUND);
 			Countdown.getInstance().stopTimer();
 			Object[] options = {"Sair do Jogo",
 					"Novo Jogo"};
@@ -35,14 +35,12 @@ public class Error extends JLabel {
                     null,     //do not use a custom Icon
                     options,  //the titles of buttons
                     options[0]);
-			System.out.println(""+reply);
             if (reply == JOptionPane.YES_OPTION)
                 System.exit(0);
             //NO_OPTION
             if (reply == JOptionPane.NO_OPTION) {
             	SudokuMain.getInstance().initGame(false);
             	Cell.resetErros();
-            	MusicPlayer.restartSong();
             }
 		}					
 	}

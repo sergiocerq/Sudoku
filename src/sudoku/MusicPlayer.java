@@ -28,7 +28,7 @@ public class MusicPlayer {
 				}
 				if(path.equals(Song.SOUNDSTACK)) {
 					clip.loop(Clip.LOOP_CONTINUOUSLY);
-					gainControl.setValue(-5.0f);
+					gainControl.setValue(-10.0f);
 				}
 				else {
 					clip.start();
@@ -43,9 +43,10 @@ public class MusicPlayer {
 	}
 	public static void stopSong() {
 		clip.stop();
+		clip.close();
 	}
 	public static void restartSong() {
 		MusicPlayer.stopSong();
-		MusicPlayer.playSong(Song.SOUNDSTACK);
+		//MusicPlayer.playSong(Song.SOUNDSTACK);
 	}
 }
