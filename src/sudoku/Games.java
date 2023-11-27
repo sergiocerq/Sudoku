@@ -105,9 +105,9 @@ public class Games {
         boolean[][] values = new boolean[9][9];
         int qtdFalseCellInLine = 0;
         int qtdFalseCellInColumn[] = new int[9];
-        for (int lines = 0; lines < values.length; lines++) {
+        for (int lines = 0; lines < 9; lines++) {
         	qtdFalseCellInLine = 0;
-            for (int columns = 0; columns < values[lines].length; columns++) {
+            for (int columns = 0; columns < 9; columns++) {
                 if (!random.nextBoolean() && qtdFalseCell > 0 && 
                 	qtdFalseCellInLine < limit && qtdFalseCellInColumn[columns] < limit) {
                     values[lines][columns] = false;
