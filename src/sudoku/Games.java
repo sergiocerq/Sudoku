@@ -97,7 +97,7 @@ public class Games {
 	};
 	
 	public static int[][] getRandomGame(){
-		int[][] hardcodedNumbers = games[random.nextInt(10)];
+		int[][] hardcodedNumbers = games[random.nextInt(9)];
 		return hardcodedNumbers;
 	}
 	
