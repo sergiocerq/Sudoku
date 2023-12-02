@@ -2,6 +2,8 @@ package sudoku;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.border.MatteBorder;
 
 public class GameBoardPanel extends JPanel {
    private static final long serialVersionUID = 1L;  // to prevent serial warning
@@ -20,13 +22,25 @@ public class GameBoardPanel extends JPanel {
 
    /** Constructor */
    public GameBoardPanel() {
-      super.setLayout(new GridLayout(SudokuConstants.GRID_SIZE, SudokuConstants.GRID_SIZE));  // JPanel
+      super.setLayout(new GridLayout(SudokuConstants.GRID_SIZE, SudokuConstants.GRID_SIZE));  // JPanel  
 
-      // Allocate the 2D array of Cell, and added into JPanel.
       for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
          for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
             cells[row][col] = new Cell(row, col);
-            super.add(cells[row][col]);   // JPanel
+            cells[row][col].setBorder(Borda.getStandardBorder());
+            if(row == 2 || row == 5) {           
+                cells[row][col].setBorder(Borda.getRowBorder());            
+            }
+            if(col == 3 || col == 6) {
+            	if(row == 2 || row == 5) {
+                    cells[row][col].setBorder(Borda.getCornerBorder());            
+            	}else {
+                    cells[row][col].setBorder(Borda.getColumnBorder());            
+            	}
+            }
+
+            super.add(cells[row][col]);  
+            // JPanel
          }
       }
 
@@ -78,6 +92,33 @@ public class GameBoardPanel extends JPanel {
       }
       return true;
    }
+   
+   public void clearCells() {
+      for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
+         for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
+            if (cells[row][col].getBackground() == Color.RED) {
+            	cells[row][col].setBackground(new Color(240, 240, 240));  
+            }
+         }
+      }
+   }
+   
+   public void verificarCells(Cell cell, int numberIn) {
+	   int col = cell.col;
+	   int row = cell.row;
+	   for (int c = 0; c < SudokuConstants.GRID_SIZE; ++c) {
+           if (cells[c][col].number == numberIn && cells[c][col].status != CellStatus.TO_GUESS) {
+        	   cells[c][col].setBackground(Color.RED);
+           }           
+       }
+	   for (int i = 0; i < SudokuConstants.GRID_SIZE; ++i) {
+	       if (cells[row][i].number == numberIn && cells[row][i].status != CellStatus.TO_GUESS) {
+	    	   cells[row][i].setBackground(Color.RED);
+	       }
+	   }
+   }
+	   
+   
    public static void newGame() {
 	   
    }
@@ -88,19 +129,23 @@ public class GameBoardPanel extends JPanel {
 	   public void actionPerformed(ActionEvent e) {
 	      // Get a reference of the JTextField that triggers this action event
 		 Cell sourceCell = (Cell)e.getSource();
+		 System.out.println(sourceCell);
 	 	 try {
 		 	 
 		 	 // Retrieve the int entered
 		 	 int numberIn = Integer.parseInt(sourceCell.getText());
 		 	 // For debugging
-		 	 System.out.println(numberIn + " == " + sourceCell.number + " ?");		 	 
+		 	 //System.out.println(numberIn + " == " + sourceCell.number + " ?");
+		 	clearCells();
 		 	 if (numberIn == sourceCell.number) {
 		 		if(sourceCell.status != CellStatus.GIVEN) sourceCell.status = CellStatus.CORRECT_GUESS;
 		 	 } else {
-		 		sourceCell.status = CellStatus.WRONG_GUESS; 
+		 		sourceCell.status = CellStatus.WRONG_GUESS; 		 		
+		 		// here
+		 		verificarCells(sourceCell, numberIn);
 		 	 }
-
 		 	 sourceCell.paint();   
+
 		 	 if(isSolved()) {
 		    	MusicPlayer.playSong(Song.WINNERSOUND);
 		 		Countdown.getInstance().stopTimer();		 		 

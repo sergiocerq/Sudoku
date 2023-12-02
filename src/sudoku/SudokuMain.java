@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.MatteBorder;
 
 
 /**
@@ -32,6 +33,7 @@ public class SudokuMain extends JFrame {
    JLabel lblEscolhaONvel;
    JButton btnSair;
    JComboBox comboBox;
+   JButton button;
 
    // Constructor
    private SudokuMain() {
@@ -77,6 +79,17 @@ public class SudokuMain extends JFrame {
 	  setBounds(100, 100, 435, 537);
 	  Error.getInstance().setVisible(false);
 	  Countdown.getInstance().setVisible(false);
+	  
+      button = new JButton("|||");
+      button.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent arg0) {
+        	Countdown.getInstance().pararTimer();
+        	JOptionPaneCustom.showPausePane();
+      	}
+      });
+      button.setBounds(12, 12, 54, 25);
+      getContentPane().add(button);
+      button.setVisible(false);
 
       // Add a button to the south to re-start the game via board.newGame()
       // ......
@@ -105,15 +118,8 @@ public class SudokuMain extends JFrame {
       
       JLabel lblNewLabel = new JLabel(new ImageIcon(getClass().getResource("/images/logo2.png")));
       lblNewLabel.setBounds(72, 12, 276, 251);
-      getContentPane().add(lblNewLabel);
-      //snakeFrame.add();
-      //snakeFrame.pack();
-		/*
-		 * BufferedImage img; try { img = ImageIO.read(new File("logo2.png")); JLabel
-		 * lblNewLabel_1 = new JLabel(new ImageIcon(img)); lblNewLabel_1.setBounds(170,
-		 * 12, 70, 15); getContentPane().add(lblNewLabel_1); } catch (IOException e1) {
-		 * // TODO Auto-generated catch block e1.printStackTrace(); }
-		 */
+      getContentPane().add(lblNewLabel);      
+      
       setLocationRelativeTo(null);
    }
    public static SudokuMain getInstance() {
@@ -125,6 +131,7 @@ public class SudokuMain extends JFrame {
 		Countdown.getInstance().setVisible(b);
 		board.setVisible(b);
 		Error.getInstance().setVisible(b);
+		button.setVisible(b);
 		btnIniciarJogo.setVisible(!b);
 		lblEscolhaONvel.setVisible(!b);
 		btnSair.setVisible(!b);
@@ -143,6 +150,7 @@ public class SudokuMain extends JFrame {
 					SudokuMain frame = getInstance();
 					MusicPlayer.playSong(Song.SOUNDSTACK);
 					frame.setVisible(true);
+					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

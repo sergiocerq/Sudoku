@@ -51,6 +51,10 @@ public class Countdown extends JLabel {
 		t.start();
 	}
 	
+	public void pararTimer() {
+		t.stop();
+	}
+	
 	public void stopTimer() {
 		t.stop();
 		setTime("00:00:00");
