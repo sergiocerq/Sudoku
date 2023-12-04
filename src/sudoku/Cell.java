@@ -30,6 +30,8 @@ public class Cell extends JTextField {
    int number;
    /** The status of this cell defined in enum CellStatus */
    CellStatus status;
+   /** Para identificar que grupo a célula faz parte*/
+   int group;
    
    private static int qtd_erros;
    

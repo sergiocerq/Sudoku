@@ -15,9 +15,12 @@ public class Countdown extends JLabel {
 	private static final long serialVersionUID = 1L;
 	private static String time;
 	private static Countdown instance;
-	private int counter;
+	private static int counter;
 
 
+	public static int getCounter() {
+		return counter;
+	}
 	public static String getTime() {
 		return time;
 	}
@@ -26,7 +29,7 @@ public class Countdown extends JLabel {
 	}
 	private Countdown() {
 		super("00:00:00");
-		this.counter = 0;
+		counter = 0;
 	}
 	
 	public static Countdown getInstance() {

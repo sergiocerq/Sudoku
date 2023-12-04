@@ -27,6 +27,7 @@ public class GameBoardPanel extends JPanel {
       for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
          for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
             cells[row][col] = new Cell(row, col);
+            cells[row][col].group = setGroup(row, col);
             cells[row][col].setBorder(Borda.getStandardBorder());
             if(row == 2 || row == 5) {           
                 cells[row][col].setBorder(Borda.getRowBorder());            
@@ -42,6 +43,7 @@ public class GameBoardPanel extends JPanel {
             super.add(cells[row][col]);  
             // JPanel
          }
+         
       }
 
       // [TODO 3] Allocate a common listener as the ActionEvent listener for all the
@@ -62,7 +64,23 @@ public class GameBoardPanel extends JPanel {
       super.setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
    }
 
-   /**
+   private int setGroup(int row, int col) {
+	   	if(col < 3) {
+	   		if(row < 3) return Group.NORTHWEST; 
+	   		if(row < 6) return Group.WEST;
+	   		return Group.SOUTHWEST;
+	   	}else if(col < 6) {
+	   		if(row < 3) return Group.NORTH; 
+	   		if(row < 6) return Group.CENTER;
+	   		return Group.SOUTH;
+	   	}else {
+	   		if(row < 3) return Group.NORTHEAST; 
+	   		if(row < 6) return Group.EAST;
+	   		return Group.SOUTHEAST;
+	   	}
+   }
+
+/**
     * Generate a new puzzle; and reset the gameboard of cells based on the puzzle.
     * You can call this method to start a new game.
     */
@@ -106,6 +124,8 @@ public class GameBoardPanel extends JPanel {
    public void verificarCells(Cell cell, int numberIn) {
 	   int col = cell.col;
 	   int row = cell.row;
+	   int linha = cell.group / 10;
+	   int coluna = cell.group % 10;
 	   for (int c = 0; c < SudokuConstants.GRID_SIZE; ++c) {
            if (cells[c][col].number == numberIn && cells[c][col].status != CellStatus.TO_GUESS) {
         	   cells[c][col].setBackground(Color.RED);
@@ -115,6 +135,13 @@ public class GameBoardPanel extends JPanel {
 	       if (cells[row][i].number == numberIn && cells[row][i].status != CellStatus.TO_GUESS) {
 	    	   cells[row][i].setBackground(Color.RED);
 	       }
+	   }
+	   for (int l = linha; l < linha + 3; ++l) {
+		   for (int c = coluna; c < coluna + 3; ++c) {
+			   if (cells[l][c].number == numberIn && cells[l][c].status != CellStatus.TO_GUESS) {
+				   cells[l][c].setBackground(Color.RED);
+			   }
+		   }
 	   }
    }
 	   
@@ -129,7 +156,6 @@ public class GameBoardPanel extends JPanel {
 	   public void actionPerformed(ActionEvent e) {
 	      // Get a reference of the JTextField that triggers this action event
 		 Cell sourceCell = (Cell)e.getSource();
-		 System.out.println(sourceCell);
 	 	 try {
 		 	 
 		 	 // Retrieve the int entered
@@ -157,7 +183,6 @@ public class GameBoardPanel extends JPanel {
 	                    null,     //do not use a custom Icon
 	                    options,  //the titles of buttons
 	                    options[0]);
-				System.out.println(""+reply);
 	            if (reply == JOptionPane.YES_OPTION)
 	                System.exit(0);
 	            //NO_OPTION

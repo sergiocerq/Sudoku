@@ -39,7 +39,7 @@ public class JOptionPaneCustom {
 			Cell.resetErros();
 		}
 		if(reply == JOptionPane.DEFAULT_OPTION) {
-			Countdown.getInstance().startTimer();
+			if(Countdown.getCounter() != 0)	Countdown.getInstance().startTimer();
 		}
 	}
 

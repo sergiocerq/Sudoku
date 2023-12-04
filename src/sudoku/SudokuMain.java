@@ -9,6 +9,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 
 /**
@@ -52,6 +54,11 @@ public class SudokuMain extends JFrame {
       comboBox.addItem("Fácil");
       comboBox.addItem("Médio");
       comboBox.addItem("Difícil");
+      comboBox.addItemListener(new ItemListener() {
+    	  public void itemStateChanged(ItemEvent arg0) {
+    		  MusicPlayer.playSong(Song.BUTTONSOUND);
+    	  }
+      });
       
       lblEscolhaONvel = new JLabel("Escolha o nível:");
       lblEscolhaONvel.setBounds(158, 275, 117, 15);
