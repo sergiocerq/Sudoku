@@ -16,13 +16,14 @@ public class Error extends JLabel {
 	private int qtderros;
 
 	private Error() {
-		updateErros(0);
+		updateErros(0);				
+	}
+
+	public void setLevel(Levels level){
 		if(level == Levels.EASY) this.qtderros = 7;
 		if(level == Levels.MEDIUM) this.qtderros = 5;
 		if(level == Levels.HARD) this.qtderros = 3;
-				
-	}
-	
+	}		
 	public static Error getInstance() {
 		if(instance == null)
 			instance = new Error();
