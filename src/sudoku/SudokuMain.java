@@ -118,12 +118,21 @@ public class SudokuMain extends JFrame {
         	public void actionPerformed(ActionEvent arg0) {
 				MusicPlayer.playSong(Song.BUTTONSOUND);
         		Countdown.getInstance().startTimer();
-        		if (comboBox.getSelectedItem().equals("Fácil")) 
-        			board.newGame(Levels.EASY);
-        		if (comboBox.getSelectedItem().equals("Médio")) 
-        			board.newGame(Levels.MEDIUM);
-        		if (comboBox.getSelectedItem().equals("Difícil")) 
-        			board.newGame(Levels.HARD);
+        		if (comboBox.getSelectedItem().equals("Fácil")) {
+				board.newGame(Levels.EASY);
+				Error.getInstance().setLevel(Levels.EASY);
+			}
+
+        		if (comboBox.getSelectedItem().equals("Médio")) {
+				board.newGame(Levels.MEDIUM);
+				Error.getInstance().setLevel(Levels.MEDIUM);
+			}
+        			
+        		if (comboBox.getSelectedItem().equals("Difícil")) {
+				board.newGame(Levels.HARD);
+				Error.getInstance().setLevel(Levels.HARD);
+			}
+        			
         		label.setText("Nível: " + (String) comboBox.getSelectedItem());
         		
         		initGame(true);
