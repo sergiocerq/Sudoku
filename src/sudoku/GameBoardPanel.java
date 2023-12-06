@@ -159,7 +159,9 @@ public class GameBoardPanel extends JPanel {
 	 	 try {
 		 	 
 		 	 // Retrieve the int entered
-		 	 int numberIn = Integer.parseInt(sourceCell.getText());
+	 		 String numberInput = sourceCell.getText();
+	 		 if(numberInput.length() > 1 || numberInput.equals("0"))  throw new NumberFormatException();
+		 	 int numberIn = Integer.parseInt(numberInput);
 		 	 // For debugging
 		 	 //System.out.println(numberIn + " == " + sourceCell.number + " ?");
 		 	clearCells();
@@ -179,7 +181,7 @@ public class GameBoardPanel extends JPanel {
 				"Novo Jogo"};
 		 		int reply = JOptionPane.showOptionDialog(null,
 		 				"Tempo : "+Countdown.getTime()+"\nVocê venceu!", "Jogo Finalizado",JOptionPane.YES_NO_OPTION,
-	                    JOptionPane.QUESTION_MESSAGE,
+	                    JOptionPane.PLAIN_MESSAGE,
 	                    null,     //do not use a custom Icon
 	                    options,  //the titles of buttons
 	                    options[0]);

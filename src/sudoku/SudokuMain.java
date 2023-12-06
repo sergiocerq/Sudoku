@@ -36,6 +36,7 @@ public class SudokuMain extends JFrame {
    JButton btnSair;
    JComboBox comboBox;
    JButton button;
+   JLabel label;
 
    // Constructor
    private SudokuMain() {
@@ -81,7 +82,7 @@ public class SudokuMain extends JFrame {
       Countdown.getInstance().setBounds(365, 12, 70, 15);
 	  cp.add(Countdown.getInstance());
 	
-	  Error.getInstance().setBounds(188, 12, 87, 15);
+	  Error.getInstance().setBounds(250, 12, 87, 15);
 	  getContentPane().add(Error.getInstance());
 	  setBounds(100, 100, 435, 537);
 	  Error.getInstance().setVisible(false);
@@ -98,6 +99,11 @@ public class SudokuMain extends JFrame {
       getContentPane().add(button);
       button.setVisible(false);
 
+      
+      label = new JLabel("");
+      label.setBounds(98, 12, 178, 15);
+      getContentPane().add(label);
+      label.setVisible(false);
       // Add a button to the south to re-start the game via board.newGame()
       // ......
 
@@ -118,6 +124,7 @@ public class SudokuMain extends JFrame {
         			board.newGame(Levels.MEDIUM);
         		if (comboBox.getSelectedItem().equals("Difícil")) 
         			board.newGame(Levels.HARD);
+        		label.setText("Nível: " + (String) comboBox.getSelectedItem());
         		
         		initGame(true);
         	}		
@@ -126,6 +133,7 @@ public class SudokuMain extends JFrame {
       JLabel lblNewLabel = new JLabel(new ImageIcon(getClass().getResource("/images/logo2.png")));
       lblNewLabel.setBounds(72, 12, 276, 251);
       getContentPane().add(lblNewLabel);      
+
       
       setLocationRelativeTo(null);
    }
@@ -139,6 +147,7 @@ public class SudokuMain extends JFrame {
 		board.setVisible(b);
 		Error.getInstance().setVisible(b);
 		button.setVisible(b);
+		label.setVisible(b);
 		btnIniciarJogo.setVisible(!b);
 		lblEscolhaONvel.setVisible(!b);
 		btnSair.setVisible(!b);
