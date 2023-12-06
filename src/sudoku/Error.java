@@ -12,9 +12,15 @@ public class Error extends JLabel {
 
 	private static final long serialVersionUID = 1L;
 	private static Error instance;
+	private Levels level;
+	private int qtderros;
 
 	private Error() {
 		updateErros(0);
+		if(level == Levels.EASY) this.qtderros = 7;
+		if(level == Levels.MEDIUM) this.qtderros = 5;
+		if(level == Levels.HARD) this.qtderros = 3;
+				
 	}
 	
 	public static Error getInstance() {
@@ -23,8 +29,8 @@ public class Error extends JLabel {
 		return instance;
 	} 
 	public void updateErros(int qtd_erros) {
-		super.setText("Erros : "+qtd_erros+" / 3");
-		if(qtd_erros > 2) {
+		super.setText("Erros : "+qtd_erros+" / "+ this.qtderros);
+		if(qtd_erros > this.qtderros) {
 	    	MusicPlayer.playSong(Song.FAILEDSOUND);
 			Countdown.getInstance().stopTimer();
 			JOptionPaneCustom.showErroPane();
