@@ -17,9 +17,9 @@ Este projeto é o resultado de um trabalho de conclusão do curso de Programaç�
 
 ## Funcionalidades Principais
 
- - Níveis de dificuldade (por exemplo, fácil, intermediário, difícil).
- - Timer (pausa/retomada).
+ - Níveis de dificuldade (fácil, intermediário, difícil).
+ - Timer: pausa/retomada.
  - Geração automática de quebra-cabeças com vários níveis de dificuldade.
- - Efeito sonoro, música de fundo.
+ - Efeito sonoro: música de fundo, muísica de vencedor.
  - Uso de imagens.
- - Verificação visual, realce as células conflitantes da mesma linha, coluna e grupo 3x3.
+ - Verificação visual: realçando as células conflitantes da mesma linha, coluna e grupo 3x3.
