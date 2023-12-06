@@ -9,8 +9,10 @@ Código base: https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaGame_Sudo
 Este projeto é o resultado de um trabalho de conclusão do curso de Programação Orientada a Objetos (POO). O Sudoku foi desenvolvido como uma aplicação de janela (Swing), utilizando os princípios fundamentais de POO.
 
 ## Imagens
-![alt text](https://github.com/vlopess/SimilarTaste/blob/main/image.jpg?raw=true)
-![alt text](https://github.com/vlopess/SimilarTaste/blob/main/image.jpg?raw=true)
+![alt text](https://github.com/sergiocerq/Sudoku/blob/main/image1.jpg?raw=true)
+![alt text](https://github.com/sergiocerq/Sudoku/blob/main/image2.jpg?raw=true)
+![alt text](https://github.com/sergiocerq/Sudoku/blob/main/image3.jpg?raw=true)
+![alt text](https://github.com/sergiocerq/Sudoku/blob/main/image4.jpg?raw=true)
 
 
 ## Funcionalidades Principais
