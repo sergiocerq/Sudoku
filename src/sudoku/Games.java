@@ -98,7 +98,6 @@ public class Games {
 	
 	public static int[][] getRandomGame(){
 		int index = random.nextInt(SudokuConstants.GRID_SIZE);
-		System.out.println(index);
 		int[][] hardcodedNumbers = games[index];
 		return hardcodedNumbers;
 	}
