@@ -30,8 +30,8 @@ public class Error extends JLabel {
 		return instance;
 	} 
 	public void updateErros(int qtd_erros) {
-		super.setText("Erros : "+qtd_erros+" / "+ this.qtderros);
-		if(qtd_erros > this.qtderros) {
+		super.setText("Erros : "+qtd_erros+" / 3 ");
+		if(qtd_erros > 2) {
 	    	MusicPlayer.playSong(Song.FAILEDSOUND);
 			Countdown.getInstance().stopTimer();
 			JOptionPaneCustom.showErroPane();
